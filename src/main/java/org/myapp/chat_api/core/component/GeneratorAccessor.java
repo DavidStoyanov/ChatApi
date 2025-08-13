@@ -1,4 +1,4 @@
-package org.myapp.chat_api.component;
+package org.myapp.chat_api.core.component;
 
 import org.myapp.chat_api.config.ApplicationBeanConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.myapp.chat_api.models.entity.User;
 import org.myapp.chat_api.models.entity.base.BaseEntity;
-import org.myapp.chat_api.component.GeneratorAccessor;
+import org.myapp.chat_api.core.component.GeneratorAccessor;
 
 import java.util.List;
 import java.util.Set;

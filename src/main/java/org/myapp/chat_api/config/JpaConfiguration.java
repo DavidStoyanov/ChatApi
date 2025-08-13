@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @Configuration
 @EnableJpaAuditing
-public class JpaConfig {
+public class JpaConfiguration {
     // Create JpaConfig to enable auditing @EnableJpaAuditing
     // (for @CreatedDate, @LastModifiedDate, etc.)
 }

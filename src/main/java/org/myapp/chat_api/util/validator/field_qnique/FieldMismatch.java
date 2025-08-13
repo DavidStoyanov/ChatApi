@@ -1,4 +1,4 @@
-package org.myapp.chat_api.validator.field_qnique;
+package org.myapp.chat_api.util.validator.field_qnique;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
