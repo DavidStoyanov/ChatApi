@@ -5,21 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-public class UserRegisterDto {
-    private String username;
+public class UserLoginServiceDto {
     private String email;
     private String password;
 
-    public UserRegisterDto() {
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public UserLoginServiceDto() {
     }
 
     public String getEmail() {

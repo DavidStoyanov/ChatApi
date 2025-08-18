@@ -1,25 +1,15 @@
 package org.myapp.chat_api.models.dto.auth;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-
-public class UserRegisterDto {
-    private String username;
+public class UserLoginDto {
     private String email;
     private String password;
 
-    public UserRegisterDto() {
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public UserLoginDto() {
     }
 
     public String getEmail() {
