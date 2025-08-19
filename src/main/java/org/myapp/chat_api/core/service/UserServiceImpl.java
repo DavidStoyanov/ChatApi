@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.myapp.chat_api.models.dto.auth.UserDto;
 import org.myapp.chat_api.models.dto.auth.UserLoginServiceDto;
 import org.myapp.chat_api.models.dto.auth.UserRegisterServiceDto;
+import org.myapp.chat_api.models.dto.user.UserProfileDto;
 import org.myapp.chat_api.models.entity.User;
 import org.myapp.chat_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,4 +58,31 @@ public class UserServiceImpl implements UserService {
 
         return this.mapper.map(user, UserDto.class);
     }
+
+    @Override
+    public UserProfileDto getProfile(Long id) throws Exception {
+        //TODO: Security: get Auth Header and check user
+
+        User user = this.userRepository.findById(id)
+                .orElseThrow(() -> new Exception("User not found!"));
+
+        UserProfileDto profileDto = this.mapper.map(user, UserProfileDto.class);
+
+        return profileDto;
+    }
+
+    @Override
+    public UserProfileDto updateProfile(Long id, UserProfileDto dto) throws Exception {
+        //TODO: Security: get Auth Header and check user
+
+        User user = this.userRepository.findById(id)
+                .orElseThrow(() -> new Exception("User not found!"));
+
+        this.mapper.map(dto, user);
+
+        this.userRepository.save(user);
+
+        return this.mapper.map(user, UserProfileDto.class);
+    }
+
 }
