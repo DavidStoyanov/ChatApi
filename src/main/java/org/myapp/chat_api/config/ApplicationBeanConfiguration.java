@@ -4,8 +4,10 @@ import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
 import org.myapp.chat_api.models.dto.chat.ChatDto;
+import org.myapp.chat_api.models.dto.message.MessageDto;
 import org.myapp.chat_api.models.entity.User;
 import org.myapp.chat_api.models.entity.chat.Chat;
+import org.myapp.chat_api.models.entity.chat.Message;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,7 +19,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -79,6 +80,10 @@ public class ApplicationBeanConfiguration {
         modelMapper.typeMap(ChatDto.class, Chat.class).addMappings(mapper -> {
             mapper.map(ChatDto::getId, Chat::setConversationId);
         });
+
+        /*modelMapper.typeMap(Message.class, MessageDto.class).addMappings(mapper -> {
+            mapper.map(Message::, MessageDto::setSenderUsername);
+        });*/
 
         return modelMapper;
     }
