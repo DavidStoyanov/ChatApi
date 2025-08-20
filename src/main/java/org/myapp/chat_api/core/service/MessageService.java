@@ -9,7 +9,9 @@ public interface MessageService {
 
     List<MessageDto> getAll();
 
+    List<MessageDto> getAllByRoom(String roomId) throws Exception;
+
     MessageDto getById(Long id) throws Exception;
 
-    MessageDto create(CreateMessageDto createMessageDto);
+    MessageDto create(CreateMessageDto createMessageDto) throws Exception;
 }

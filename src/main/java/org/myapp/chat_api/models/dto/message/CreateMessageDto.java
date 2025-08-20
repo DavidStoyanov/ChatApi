@@ -3,13 +3,15 @@ package org.myapp.chat_api.models.dto.message;
 public class CreateMessageDto {
     private Long sender;
     private String content;
+    private String conversationId;
 
     public CreateMessageDto() {
     }
 
-    public CreateMessageDto(Long sender, String content) {
+    public CreateMessageDto(Long sender, String content, String conversationId) {
         this.sender = sender;
         this.content = content;
+        this.conversationId = conversationId;
     }
 
     public Long getSender() {
@@ -26,5 +28,13 @@ public class CreateMessageDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getConversationId() {
+        return conversationId;
+    }
+
+    public void setConversationId(String conversationId) {
+        this.conversationId = conversationId;
     }
 }

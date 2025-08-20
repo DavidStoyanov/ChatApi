@@ -39,6 +39,27 @@ public class MessageController {
         return response;
     }
 
+    //todo remove
+    @GetMapping("/{id}/room-specific")
+    public ApiResponse<List<MessageDto>> getAllMessagesForRoom(@PathVariable String id) {
+        ApiResponse<List<MessageDto>> response = new ApiResponse<>();
+        List<MessageDto> allMessages;
+
+        try {
+            allMessages = this.messageService.getAllByRoom(id);
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setMessage("Messages not found!");
+            return response;
+        }
+
+        response.setSuccess(true);
+        response.setMessage("Messages found!");
+        response.setData(allMessages);
+
+        return response;
+    }
+
     @GetMapping("/{id}")
     public ApiResponse<MessageDto> getMessage(@PathVariable Long id) {
         ApiResponse<MessageDto> response = new ApiResponse<>();

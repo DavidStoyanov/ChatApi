@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ChatServiceImpl implements ChatService {
@@ -83,5 +84,10 @@ public class ChatServiceImpl implements ChatService {
 
         this.chatRepository.save(chat);
         return this.modelMapper.map(chat, ChatDto.class);
+    }
+
+    @Override
+    public Optional<Chat> getByConversationId(String conversationId) {
+        return this.chatRepository.findByConversationId(conversationId);
     }
 }

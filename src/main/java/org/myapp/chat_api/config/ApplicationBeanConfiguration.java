@@ -2,8 +2,10 @@ package org.myapp.chat_api.config;
 
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.modelmapper.spi.MappingContext;
 import org.myapp.chat_api.models.dto.chat.ChatDto;
+import org.myapp.chat_api.models.dto.message.CreateMessageDto;
 import org.myapp.chat_api.models.dto.message.MessageDto;
 import org.myapp.chat_api.models.entity.User;
 import org.myapp.chat_api.models.entity.chat.Chat;
@@ -83,6 +85,13 @@ public class ApplicationBeanConfiguration {
 
         /*modelMapper.typeMap(Message.class, MessageDto.class).addMappings(mapper -> {
             mapper.map(Message::, MessageDto::setSenderUsername);
+        });*/
+
+        /*modelMapper.addMappings(new PropertyMap<CreateMessageDto, Message>() {
+            @Override
+            protected void configure() {
+                skip(source.getConversationId());
+            }
         });*/
 
         return modelMapper;
