@@ -14,10 +14,15 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findOneByEmail(String email);
 
+    User getReferenceById(Long id);
+
     @Modifying
     @Query(value = "update User u set u.alias = :alias, u.firstName = :firstName, u.lastName = :lastName where u.id = :id")
     void updateUserProfileById(@Param("id") Long id,
                                @Param("username") String username,
                                @Param("firstName") String firstName,
                                @Param("lastName") String lastName);
+
+
+
 }

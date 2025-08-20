@@ -85,4 +85,9 @@ public class UserServiceImpl implements UserService {
         return this.mapper.map(user, UserProfileDto.class);
     }
 
+    @Override
+    public User getReferenceById(Long id) {
+        return this.userRepository.getReferenceById((id));
+    }
+
 }

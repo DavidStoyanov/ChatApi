@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
     private final ModelMapper mapper;
-
     private final UserService userService;
 
     @Autowired
@@ -45,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ApiResponse<UserDto> registerUser(@RequestBody UserRegisterDto userDto) {
+    public ApiResponse<UserDto> registerUser(@RequestBody final UserRegisterDto userDto) {
         UserRegisterServiceDto userServiceDto = this.mapper.map(userDto, UserRegisterServiceDto.class);
 
         ApiResponse<UserDto> response = new ApiResponse<>();
