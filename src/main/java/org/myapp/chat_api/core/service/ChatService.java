@@ -15,4 +15,6 @@ public interface ChatService {
     ChatDto updateById(String id, UpdateChatDto chatDto) throws Exception;
 
     Optional<Chat> getByConversationId(String conversationId);
+
+    List<ChatDto> getAllByUser(Long id);
 }

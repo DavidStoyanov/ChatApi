@@ -1,17 +1,21 @@
 package org.myapp.chat_api.models.dto.chat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ChatDto {
     private String id;
     private String title;
     private Integer participantsSize;
+    private boolean isDisabled;
 
     public ChatDto() {
     }
 
-    public ChatDto(String id, String title, Integer participantsSize) {
+    public ChatDto(String id, String title, Integer participantsSize, boolean isDisabled) {
         this.id = id;
         this.title = title;
         this.participantsSize = participantsSize;
+        this.isDisabled = isDisabled;
     }
 
     public String getId() {
@@ -36,5 +40,14 @@ public class ChatDto {
 
     public void setParticipantsSize(Integer participantsSize) {
         this.participantsSize = participantsSize;
+    }
+
+    @JsonProperty("isDisabled")
+    public boolean isDisabled() {
+        return isDisabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        isDisabled = disabled;
     }
 }

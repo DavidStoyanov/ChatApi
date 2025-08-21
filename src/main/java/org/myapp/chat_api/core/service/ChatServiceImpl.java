@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ChatServiceImpl implements ChatService {
@@ -36,6 +37,19 @@ public class ChatServiceImpl implements ChatService {
     public List<ChatDto> getAll() {
         List<Chat> chats = this.chatRepository.findAll();
         ChatDto[] chatsDtoArr = this.modelMapper.map(chats, ChatDto[].class);
+        return List.of(chatsDtoArr);
+    }
+
+    @Transactional
+    @Override
+    public List<ChatDto> getAllByUser(Long id) {
+        List<Chat> chats = this.chatRepository.findAll();
+
+        List<Chat> filteredChats = chats.stream()
+                .filter(c -> c.getCreator().getId().equals(id))
+                .collect(Collectors.toList());
+
+        ChatDto[] chatsDtoArr = this.modelMapper.map(filteredChats, ChatDto[].class);
         return List.of(chatsDtoArr);
     }
 
@@ -90,4 +104,5 @@ public class ChatServiceImpl implements ChatService {
     public Optional<Chat> getByConversationId(String conversationId) {
         return this.chatRepository.findByConversationId(conversationId);
     }
+
 }

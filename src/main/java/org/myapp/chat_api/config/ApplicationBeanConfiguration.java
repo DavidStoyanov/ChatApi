@@ -67,6 +67,11 @@ public class ApplicationBeanConfiguration {
             }
         });
 
+        Converter<Chat, Boolean> isDisabledConverter = ctx -> {
+            Chat source = ctx.getSource();
+            return source.getDisabledOn() != null;
+        };
+
         modelMapper.typeMap(Chat.class, ChatDto.class).addMappings(mapper -> {
             mapper.map(Chat::getConversationId, ChatDto::setId);
             /*mapper.map(src -> {
@@ -77,6 +82,8 @@ public class ApplicationBeanConfiguration {
                 Set<User> participants = (Set<User>) ctx.getSource();
                 return participants == null ? 0 : participants.size();
             }).map(Chat::getParticipants, ChatDto::setParticipantsSize);
+            //mapper.map(src -> src.getDisabledOn() != null, ChatDto::setDisabled);
+            mapper.using(isDisabledConverter).map(src -> src, ChatDto::setDisabled);
         });
 
         modelMapper.typeMap(ChatDto.class, Chat.class).addMappings(mapper -> {

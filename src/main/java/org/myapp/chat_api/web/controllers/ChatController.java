@@ -43,6 +43,27 @@ public class ChatController {
         return response;
     }
 
+    //todo remove
+    @GetMapping("{id}/user-specific")
+    public ApiResponse<List<ChatDto>> getAllChats(@PathVariable Long id) {
+        ApiResponse<List<ChatDto>> response = new ApiResponse<>();
+        List<ChatDto> allChats;
+
+        try {
+            allChats = this.chatService.getAllByUser(id);
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setMessage("Chats not found!");
+            return response;
+        }
+
+        response.setSuccess(true);
+        response.setMessage("Chats found!");
+        response.setData(allChats);
+
+        return response;
+    }
+
     @GetMapping("/{id}")
     public ApiResponse<ChatDto> getChat(@PathVariable String id) {
         ApiResponse<ChatDto> response = new ApiResponse<>();
