@@ -13,11 +13,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "chats")
-/*@Getter
-@Setter
-@NoArgsConstructor*/
 public class Chat extends BaseEntity {
 
     @Column(name = "title", nullable = false)
@@ -55,55 +55,5 @@ public class Chat extends BaseEntity {
         this.conversationId = confId;*/
 
         this.conversationId = GeneratorAccessor.getGenerator().generate();
-    }
-
-
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getConversationId() {
-        return conversationId;
-    }
-
-    public void setConversationId(String conversationId) {
-        this.conversationId = conversationId;
-    }
-
-    public LocalDateTime getDisabledOn() {
-        return disabledOn;
-    }
-
-    public void setDisabledOn(LocalDateTime disabledOn) {
-        this.disabledOn = disabledOn;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
-
-    public Set<User> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(Set<User> participants) {
-        this.participants = participants;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
     }
 }

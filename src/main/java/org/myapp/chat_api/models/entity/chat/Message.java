@@ -10,11 +10,11 @@ import org.myapp.chat_api.models.entity.base.BaseEntity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "messages")
-/*@Getter
-@Setter
-@NoArgsConstructor*/
 public class Message extends BaseEntity {
 
     @ManyToOne(optional = false)
@@ -49,72 +49,15 @@ public class Message extends BaseEntity {
             inverseForeignKey = @ForeignKey(name = "fk_messages_users_users_deleted_for"))
     private Set<User> deletedFor;
 
+    /*
+    * Bi-direction relation with Chat Entity
+    * */
     /*@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_messages_chats"))
     private Chat chat;*/
 
-
     @PrePersist
     protected void onCreate() {
         this.createdOn = LocalDateTime.now();
-    }
-
-    public Message() {
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(LocalDateTime createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public Boolean getDelivered() {
-        return isDelivered;
-    }
-
-    public void setDelivered(Boolean delivered) {
-        isDelivered = delivered;
-    }
-
-    public Boolean getSpoiler() {
-        return isSpoiler;
-    }
-
-    public void setSpoiler(Boolean spoiler) {
-        isSpoiler = spoiler;
-    }
-
-    public Set<User> getSeenBy() {
-        return seenBy;
-    }
-
-    public void setSeenBy(Set<User> seenBy) {
-        this.seenBy = seenBy;
-    }
-
-    public Set<User> getDeletedFor() {
-        return deletedFor;
-    }
-
-    public void setDeletedFor(Set<User> deletedFor) {
-        this.deletedFor = deletedFor;
     }
 }

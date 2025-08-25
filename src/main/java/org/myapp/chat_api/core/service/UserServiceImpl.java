@@ -1,11 +1,13 @@
 package org.myapp.chat_api.core.service;
 
 import org.modelmapper.ModelMapper;
+import org.myapp.chat_api.config.ExceptionMessage;
 import org.myapp.chat_api.models.dto.auth.UserDto;
 import org.myapp.chat_api.models.dto.auth.UserLoginServiceDto;
 import org.myapp.chat_api.models.dto.auth.UserRegisterServiceDto;
 import org.myapp.chat_api.models.dto.user.UserProfileDto;
 import org.myapp.chat_api.models.entity.User;
+import org.myapp.chat_api.models.error.AppExUsersException;
 import org.myapp.chat_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,10 +34,10 @@ public class UserServiceImpl implements UserService {
     public UserDto login(UserLoginServiceDto dto) throws Exception {
         User user = this.userRepository
                 .findOneByEmail(dto.getEmail())
-                .orElseThrow(() -> new Exception("User not Found"));
+                .orElseThrow(() -> new AppExUsersException(ExceptionMessage.USER_NOT_FOUND));
 
         if (!this.passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
-            throw new Exception("Invalid password");
+            throw new AppExUsersException(ExceptionMessage.INVALID_PASSWORD);
         }
 
         return this.mapper.map(user, UserDto.class);
@@ -46,7 +48,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> existingUser = this.userRepository.findOneByEmail(dto.getEmail());
 
         if (existingUser.isPresent()) {
-            throw new Exception("User with email already exists");
+            throw new AppExUsersException(ExceptionMessage.EMAIL_ALREADY_EXIST);
         }
 
         String hashedPassword = this.passwordEncoder.encode(dto.getPassword());
